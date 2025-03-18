@@ -20,65 +20,51 @@ public class User {
     private long id;
 
     @Column(name = "USER_PASSWORD", nullable = false)
-    private String user_password;
+    private String userPassword; // Renamed for Java conventions
 
-    @Column(name = "USER_EMAIL",nullable = false)
-    private String user_email;
-    
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Column(name = "USER_EMAIL", nullable = false)
+    private String userEmail; // Renamed for Java conventions
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Borrowed> borrowed;
 
+    public User() {}
 
-
-    private List<Book> books;
-
-    public User(){}
-    
-    public User(long id, String user_password, String user_email, List<Book> books) {
-        this.id = id;
-        this.user_password = user_password;
-        this.user_email = user_email;
-        this.books = books;
+    public User(String userEmail, String userPassword, List<Borrowed> borrowed) {
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.borrowed = borrowed;
     }
 
-    public long getUser_id() {
+    public long getId() {
         return id;
     }
 
-    public void setUser_id(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getUser_password() {
-        return user_password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
-    public String getUser_email() {
-        return user_email;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUser_email(String user_email) {
-        this.user_email = user_email;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<Borrowed> getBorrowed() {
+        return borrowed;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setBorrowed(List<Borrowed> borrowed) {
+        this.borrowed = borrowed;
     }
-
-    
-
-    
-   
-
-
-    
-
 }

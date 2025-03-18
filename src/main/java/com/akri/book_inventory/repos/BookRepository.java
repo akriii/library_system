@@ -12,5 +12,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByUserId(Long id);
     // Spring Data JPA will generate CRUD operations automatically
+
+    List<Book> findByBorrowed_User_Id(Long id);
 }
 
